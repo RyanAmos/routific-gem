@@ -1,7 +1,7 @@
 module RoutificApi
   # This class represents a location in the network
   class Location
-    attr_accessor :name, :lat, :lng
+    attr_accessor :id, :name, :lat, :lng
 
     # Constructor
     #
@@ -15,13 +15,15 @@ module RoutificApi
       # Validates the parameters provided
       validate(params)
 
+      @id = params["id"]
       @lat = params["lat"]
       @lng = params["lng"]
       @name = params["name"]
     end
 
     def ==(another_location)
-      self.name == another_location.name &&
+      self.id == another_location.id &&
+        self.name == another_location.name &&
         self.lat == another_location.lat &&
         self.lng == another_location.lng
     end
@@ -34,6 +36,7 @@ module RoutificApi
     # def to_json(options = nil)
     def as_json(options = nil)
       jsonData = {}
+      jsonData["id"] = self.id if self.id
       jsonData["name"] = self.name if self.name
       jsonData["lat"] = self.lat
       jsonData["lng"] = self.lng

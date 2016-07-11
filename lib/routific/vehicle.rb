@@ -1,7 +1,8 @@
 module RoutificApi
   # This class represents a vehicle in the fleet
   class Vehicle
-    attr_accessor :id, :start_location, :end_location, :shift_start, :shift_end, :capacity
+    attr_accessor :id, :start_location, :end_location, :shift_start, :shift_end, :capacity,
+      :type, :speed, :strict_start, :min_visits, :break_start, :break_end, :break_duration
 
     # Constructor
     #
@@ -24,6 +25,13 @@ module RoutificApi
       @shift_start = params["shift_start"]
       @shift_end = params["shift_end"]
       @capacity = params["capacity"]
+      @type = params["type"]
+      @speed = params["speed"]
+      @strict_start = params["strict_start"]
+      @min_visits = params["min_visits"]
+      @break_start = params["break_start"]
+      @break_end = params["break_end"]
+      @break_duration = params["break_duration"]
     end
 
     def to_json(options=nil)
@@ -39,6 +47,13 @@ module RoutificApi
       jsonData["shift_start"] = self.shift_start if self.shift_start
       jsonData["shift_end"] = self.shift_end if self.shift_end
       jsonData["capacity"] = self.capacity if self.capacity
+      jsonData["type"] = self.type if self.type
+      jsonData["speed"] = self.speed if self.speed
+      jsonData["strict_start"] = self.strict_start if self.strict_start
+      jsonData["min_visits"] = self.min_visits if self.min_visits
+      jsonData["break_start"] = self.break_start if self.break_start
+      jsonData["break_end"] = self.break_end if self.break_end
+      jsonData["break_duration"] = self.break_duration if self.break_duration
 
       jsonData
     end
